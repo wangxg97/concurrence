@@ -2,7 +2,6 @@ package com.teacher.lock;
 
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -34,11 +33,10 @@ public class LockTest6 {
                     }
                 }
                 log.debug("男女搭配干活不累；啪啪啪写完了代码");
-            }finally {
+            } finally {
                 lock.unlock();
             }
         }, "jack").start();
-
 
 
         new Thread(() -> {
@@ -55,11 +53,10 @@ public class LockTest6 {
                 }
                 log.debug("-----卧槽好多钱；啪啪啪写完了代码");
 
-            }finally {
+            } finally {
                 lock.unlock();
             }
         }, "rose").start();
-
 
 
         Thread.sleep(1000);
@@ -69,12 +66,12 @@ public class LockTest6 {
                 isMoney = true;
                 log.debug("钱来哦了");
 
-                isPrettyGril=true;
+                isPrettyGril = true;
                 log.debug("桥老师");
                 //waitpg.signal();
                 waitm.signalAll();
 
-            }finally {
+            } finally {
                 lock.unlock();
             }
         }, "boss").start();

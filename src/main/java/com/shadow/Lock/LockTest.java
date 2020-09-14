@@ -1,46 +1,55 @@
-package com.shadow.lock;
+package com.shadow.Lock;
 
 import lombok.extern.slf4j.Slf4j;
 
-//ËÀËø
+import java.util.concurrent.TimeUnit;
+
+/**
+ * @author ï¼šwangxg
+ * @version ï¼š
+ * @program ï¼šconcurrence
+ * @date ï¼šCreated in 2020/9/14 10:25
+ * @description ï¼šæ­»é”
+ */
 @Slf4j(topic = "enjoy")
 public class LockTest {
 
+    //å®šä¹‰ä¸¤æŠŠé”
+    static Object x=new Object();
+    static Object y=new Object();
+
     public static void main(String[] args) {
-        Object x = new Object();
-         Object y=new Object();
-
-
         new Thread(()->{
+            //èŽ·å–xçš„é”
             synchronized (x){
                 log.debug("locked x");
                 try {
-                    Thread.sleep(1000);//ÈÃ³öcpuµÄÖ´ÐÐÈ¨£¬µ«ÊÇ²»»áÊÍ·ÅËø
+                    TimeUnit.SECONDS.sleep(1);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
                 synchronized (y){
-                    log.debug("locked y");
-                    log.debug("t1.....");
+                    log.debug("locked x");
+                    log.debug("t1---------");
                 }
             }
         },"t1").start();
+
 
         new Thread(()->{
             synchronized (y){
                 log.debug("locked y");
                 try {
-                    Thread.sleep(1000);//ÈÃ³öcpuµÄÖ´ÐÐÈ¨£¬µ«ÊÇ²»»áÊÍ·ÅËø
+                    TimeUnit.SECONDS.sleep(2);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
                 synchronized (x){
                     log.debug("locked x");
-                    log.debug("t2.....");
+                    log.debug("t2---------");
                 }
             }
         },"t2").start();
-
-
     }
+
 }

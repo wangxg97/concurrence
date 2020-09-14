@@ -15,7 +15,7 @@ public class LockTest9 {
 
         new Thread(() -> {
             try {
-                waitNofity.print(k+"",1,2);
+                waitNofity.print("a",1,2);
 
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -25,7 +25,7 @@ public class LockTest9 {
 
         new Thread(() -> {
             try {
-                waitNofity.print(k+"",2,3);
+                waitNofity.print("b",2,3);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -36,7 +36,7 @@ public class LockTest9 {
 
         new Thread(() -> {
             try {
-                waitNofity.print(k+"",3,1);
+                waitNofity.print("c",3,1);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -59,7 +59,6 @@ public class LockTest9 {
                         this.wait();
                     }
                     System.out.print(content);
-                    k++;
                     flag= nextFlag;
                     this.notifyAll();
                 }
