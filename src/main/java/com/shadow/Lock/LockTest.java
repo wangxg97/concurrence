@@ -40,6 +40,7 @@ public class LockTest {
             synchronized (y){
                 log.debug("locked y");
                 try {
+                    
                     TimeUnit.SECONDS.sleep(2);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
